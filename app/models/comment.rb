@@ -7,4 +7,5 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   has_many :comments
+  has_one :battle_won, class_name: 'Battle', foreign_key: 'winning_comment_id'
 end

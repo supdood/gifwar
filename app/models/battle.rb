@@ -5,6 +5,7 @@ class Battle < ActiveRecord::Base
 	belongs_to :created_by, class_name:'User'
   belongs_to :winning_comment, class_name: 'Comment'
   has_one :winning_user, through: :winning_comment, source: :user
+  has_many :participating_users, -> { distinct }, through: :comments, source: :user
 
   has_many :comments
 
