@@ -1,19 +1,68 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @battle.topic %>
-</p>
+<h1>Topic: <%= @battle.topic %></h1>
 
-<p>
-  <strong>Description:</strong>
+<h2>
   <%= @battle.description %>
-</p>
+</h2>
 
 <p>
   <strong>Created by:</strong>
-  <%= @battle.created_by_id %>
+  <%= @battle.created_by.full_name %>
 </p>
 
-<%= link_to 'Edit', edit_battle_path(@battle) %> |
-<%= link_to 'Back', battles_path %>
+<% @battle.comments.each do |comment| %>
+  <div>
+    <strong><%= image_tag(comment.user.avatar_url, class: "avatar") %> <%= comment.user.full_name %></strong>
+    <div><%= image_tag(comment.image_url) %></div>
+    <div><%= comment.body %></div>
+    <div><%= comment.tags.map {|tag| "\##{tag.name}"}.join(", ") %></div>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to "Edit", edit_comment_path(comment) %>
+    <% end %>
+    <button class="add-tag" data-comment-id="<%= comment.id %>">Tag</button>
+    <% if !@battle.won? && @battle.created_by_id == current_user.id %>
+      <%= form_for(@battle) do |f| %>
+        <%= f.hidden_field :winning_comment_id, value: comment.id %>
+        <%= f.submit "Mark as winner" %>
+      <% end %>
+    <% end %>
+    <%= form_for(Tag.new, html: {id: "new-tag-#{comment.id}", class: "new-tag"}) do |f| %>
+      <%= f.text_field :name %>
+      <%= f.hidden_field :comment_id, value: comment.id %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <br>
+<% end %>
+
+<% unless @battle.won? %>
+  <%= form_for(@comment) do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :image_url %><br>
+      <%= f.text_field :image_url %>
+    </div>
+    <div class="field">
+      <%= f.label :body %><br>
+      <%= f.text_area :body %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :battle_id, value: @battle.id %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>
