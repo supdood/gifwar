@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601152437) do
+ActiveRecord::Schema.define(version: 20160601194123) do
 
   create_table "battles", force: :cascade do |t|
     t.string   "topic"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20160601152437) do
     t.integer  "user_id",    null: false
     t.integer  "battle_id",  null: false
     t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "comment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,4 +1,5 @@
 class BattlesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_battle, only: [:show, :edit, :update, :destroy]
 
   # GET /battles
@@ -10,6 +11,7 @@ class BattlesController < ApplicationController
   # GET /battles/1
   # GET /battles/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /battles/new
@@ -69,6 +71,6 @@ class BattlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def battle_params
-      params.require(:battle).permit(:topic, :description, :created_by_id)
+      params.require(:battle).permit(:topic, :description, :created_by_id, :winning_comment_id)
     end
 end
