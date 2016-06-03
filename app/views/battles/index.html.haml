@@ -1,0 +1,20 @@
+%p#notice= notice
+%h1 Listing Battles
+%table
+  %thead
+    %tr
+      %th Topic
+      %th Description
+      %th Created by
+      %th{:colspan => "3"}
+  %tbody
+    - @battles.each do |battle|
+      %tr
+        %td= battle.topic
+        %td= battle.description
+        %td= battle.created_by.full_name if battle.created_by.present?
+        %td= link_to 'Show', battle
+        %td= link_to 'Edit', edit_battle_path(battle)
+        %td= link_to 'Destroy', battle, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Battle', new_battle_path
