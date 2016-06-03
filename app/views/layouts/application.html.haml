@@ -1,16 +1,25 @@
-!!!
-%html
+!!! 5
+%html{ :lang => "en" }
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Gifwar
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = csrf_meta_tags
+    %meta{ :charset => "utf-8" }
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+    %title= "Gifwar! #{yield(:title) if content_for?(:title)}"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tag
+
   %body
-    %nav
-      - if current_user.nil?
-        = link_to "Sign In", new_user_session_path
-      - else
-        = current_user.full_name
-        = link_to "Sign Out", destroy_user_session_path, method: :delete
-    = yield
+    .row
+      .small-12
+        %nav
+          - if current_user.nil?
+            = link_to "Sign In", new_user_session_path
+          - else
+            = current_user.full_name
+            = link_to "Sign Out", destroy_user_session_path, method: :delete
+    .row
+      .small-12
+        = yield
