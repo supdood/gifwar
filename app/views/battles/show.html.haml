@@ -2,32 +2,15 @@
 
 %h1= "Topic: #{@battle.topic}"
 
-%h2= @battle.description
+%h2= text_with_images @battle.description
 
 %p
   %strong Created by:
   = @battle.created_by.full_name
 
-- @battle.comments.each do |comment|
-  %div
-    %strong
-      = image_tag(comment.user.avatar_url, class: "avatar")
-      = comment.user.full_name
-    %div= image_tag(comment.image_url)
-    %div= comment.body
-    %div= comment.tags.map { |tag| "\##{tag.name}" }.join(", ")
-    - if comment.user_id == current_user.id
-      = link_to "Edit", edit_comment_path(comment)
-    %button.add-tag{ :"data-comment-id" => "#{comment.id}"} Tag
-    - if !@battle.won? && @battle.created_by_id == current_user.id
-      = form_for(@battle) do |f|
-        = f.hidden_field :winning_comment_id, value: comment.id
-        = f.submit "Mark as winner"
-    = form_for(Tag.new, html: {id: "new-tag-#{comment.id}", class: "new-tag"}) do |f|
-      = f.text_field :name
-      = f.hidden_field :comment_id, value: comment.id
-      = f.submit
-  %br
+- @comments.each do |comment|
+  = render partial: "comment", locals:{comment:comment, battle:@battle}
+
 - unless @battle.won?
   = form_for(@comment) do |f|
     - if @comment.errors.any?
@@ -37,12 +20,6 @@
           - @comment.errors.full_messages.each do |message|
             %li= message
     .field
-      = f.label :image_url
-      %br
-      = f.text_field :image_url
-    .field
-      = f.label :body
-      %br
-      = f.text_area :body
+      = f.text_area :body, placeholder: "Write your comment here"
     .field= f.hidden_field :battle_id, value: @battle.id
     .actions= f.submit
