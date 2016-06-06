@@ -12,6 +12,7 @@ class BattlesController < ApplicationController
   # GET /battles/1.json
   def show
     @comment = Comment.new
+    @comments = @battle.comments.where(comment_id:nil)
   end
 
   # GET /battles/new
