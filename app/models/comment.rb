@@ -9,4 +9,9 @@ class Comment < ActiveRecord::Base
   has_many :comments
   has_one :battle_won, class_name: 'Battle', foreign_key: 'winning_comment_id'
   has_many :tags
+
+  def image
+		regex = /https?:\/\/\S+\.(?:gif|jpg|jpeg|png|gifv)/i
+    body.match regex
+  end
 end

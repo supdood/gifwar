@@ -9,3 +9,30 @@
 .avatar {
   width: 50px;
 }
+
+.ghost-button {
+  &:hover {
+    background: rgba(10, 10, 10, 0.1);
+  }
+}
+
+.fuck-foundation {
+  @extend .ghost-button;
+
+  box-sizing: border-box;
+  float: left;
+  display: block;
+  width: 32%;
+  padding: 15px;
+  border: 1px solid rgba(10, 10, 10, 0.25);
+  margin: 0 2% 2% 0;
+  height: 300px;
+
+  &:hover {
+    color: inherit
+  }
+}
+
+.fuck-foundation:nth-child(3n+3) {
+  margin-right: 0;
+}
