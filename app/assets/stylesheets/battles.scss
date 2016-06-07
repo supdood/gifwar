@@ -65,7 +65,7 @@ body {
   background-color: #EBFBF8;
   color: black;
   margin-bottom: 5px;
-  
+
   border-style: solid;
   border-width: 2px;
 }
@@ -80,4 +80,11 @@ button.button, button.button:focus  {
 button.button:hover {
   background-color: lightslategray;
   color: black;
+}
+.edit-comment-form {
+  display: none;
+}
+
+.hidden_button {
+  display: none;
 }
