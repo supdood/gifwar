@@ -1,12 +1,18 @@
 %p#notice= notice
 
-%h1= "Topic: #{@battle.topic}"
-
-%h2= text_with_images @battle.description
-
-%p
-  %strong Created by:
-  = @battle.created_by.full_name
+.battle-header.callout{class: "#{@battle.won? ? "warning" : "success"}"}
+  .row
+    .small-2.columns
+      %strong Created by:
+      = image_tag @battle.created_by.avatar_url
+      = @battle.created_by.full_name
+    .columns{class: "#{@battle.won? ? "small-8" : "small-10"}"}
+      %h1= "Topic: #{@battle.topic}"
+      %h2= text_with_images @battle.description
+    - if @battle.won?
+      .columns.small-2
+        %strong WINNER:
+        = image_tag @battle.winning_comment.image_url
 
 - @comments.each do |comment|
   = render partial: "comment", locals:{comment:comment, battle:@battle}
