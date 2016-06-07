@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready(function() {
+var addNewTagHandler = function() {
     $(".add-tag").click(function(clickEvent) {
         var id = $(clickEvent.target).data("comment-id");
         var form = $("#new-tag-" + id);
@@ -12,4 +12,7 @@ $(document).ready(function() {
             form.show();
         }
     });
-})
+}
+
+$(document).ready(addNewTagHandler);
+$(document).on("page:change", addNewTagHandler);
