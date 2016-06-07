@@ -10,12 +10,17 @@ class Battle < ActiveRecord::Base
   has_many :comments
 
   scope :unwon, -> { where(winning_comment_id: nil) }
+  scope :won, -> { where.not(winning_comment_id: nil) }
 
   def must_be_previous_winner
-    Battle.last.winning_user.id == self.created_by_id
+    User.current_winner.id == self.created_by_id
   end
 
   def won?
     !winning_comment.nil?
+  end
+
+  def self.current
+    find_by(winning_comment_id: nil)
   end
 end

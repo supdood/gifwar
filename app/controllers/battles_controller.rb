@@ -5,7 +5,8 @@ class BattlesController < ApplicationController
   # GET /battles
   # GET /battles.json
   def index
-    @battles = Battle.all
+    @current_battle = Battle.current
+    @battles = Battle.won.order(created_at: :desc)
   end
 
   # GET /battles/1
