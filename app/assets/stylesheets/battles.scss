@@ -6,8 +6,26 @@
   display: none;
 }
 
+//our additions changes
+
+body {
+  background-color: #2F3F73;
+}
+
+.color-0 {
+  background-color: #BFCCC9;
+}
+
+.color-1 {
+  background-color: #EBFBF8;
+}
+
 .avatar {
-  width: 50px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
 }
 
 .ghost-button {
@@ -35,4 +53,31 @@
 
 .fuck-foundation:nth-child(3n+3) {
   margin-right: 0;
+}
+
+.comment {
+  border-style: solid;
+  border-width: 2px;
+  margin: 1px;
+}
+
+.battle-header {
+  background-color: #EBFBF8;
+  color: black;
+  margin-bottom: 5px;
+  
+  border-style: solid;
+  border-width: 2px;
+}
+
+button.button, button.button:focus  {
+  background-color: lightgray;
+  color: black;
+  outline-color: azure;
+  position: fixed;
+}
+
+button.button:hover {
+  background-color: lightslategray;
+  color: black;
 }
