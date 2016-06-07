@@ -17,9 +17,9 @@
  */
 
 html, body,.off-canvas-wrapper,.off-canvas-wrapper-inner{
-    min-height:100vh;   
+    min-height:100vh;
 }
 
 html, body,.off-canvas-wrapper,.off-canvas-wrapper-inner, .off-canvas-content{
-    min-height:100vh;   
+    min-height:100vh;
 }
