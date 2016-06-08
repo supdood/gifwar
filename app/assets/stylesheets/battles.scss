@@ -32,6 +32,7 @@ h1.battles_header {
   height: 5em;
 }
 
+
 .ghost-button {
   &:hover {
     background: rgba(10, 10, 10, 0.1);
@@ -63,6 +64,10 @@ h1.battles_header {
   border-style: solid;
   border-width: 2px;
   margin: 1px;
+}
+
+.comment img, .comment video {
+  margin-bottom: 5px;
 }
 
 .battle-header {

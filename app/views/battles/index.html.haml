@@ -16,4 +16,4 @@
   - @battles.each do |battle|
     = link_to battle, class:"fuck-foundation" do
       %h4= battle.topic
-      = image_tag battle.winning_comment.image, class: "thumbnail"
+      = text_with_images battle.winning_comment.image, true
