@@ -1,7 +1,7 @@
 %p#notice= notice
 
 .row
-  %h1 Battles
+  %h1.battles_header Battles
   - if User.current_winner == current_user
     = link_to "New battle", new_battle_path, class: "button"
 
