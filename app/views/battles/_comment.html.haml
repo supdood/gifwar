@@ -12,9 +12,15 @@
   %div= comment.tags.map { |tag| "\##{tag.name}" }.join(", ")
   - if !battle.won?
     %button.add-tag{ :"data-comment-id" => "#{comment.id}"} Tag
+    %button.add-reply{ :"data-comment-id" => "#{comment.id}"} Reply
     = form_for(Tag.new, html: {id: "new-tag-#{comment.id}", class: "new-tag"}) do |f|
       = f.text_field :name
       = f.hidden_field :comment_id, value: comment.id
+      = f.submit
+    = form_for(Comment.new, html: {id: "new-reply-#{comment.id}", class: "new-reply"}) do |f|
+      = f.text_field :body
+      = f.hidden_field :comment_id, value: comment.id
+      = f.hidden_field :battle_id, value: battle.id
       = f.submit
   - if !battle.won? && battle.created_by_id == current_user.id
     = form_for(battle) do |f|

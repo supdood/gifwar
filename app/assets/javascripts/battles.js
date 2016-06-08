@@ -48,6 +48,16 @@ var eventHandlers = function() {
         prev_target = clickEvent.target;
       }
     });
+
+    $(".add-reply").click(function(clickEvent) {
+        var id = $(clickEvent.target).data("comment-id");
+        var form = $("#new-reply-" + id);
+        if (form.is(":visible")) {
+            form.hide();
+        } else {
+            form.show();
+        }
+    });
 }
 
 $(document).on("page:change", eventHandlers);
