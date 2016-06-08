@@ -23,22 +23,23 @@
               = link_to "Edit #{current_user.full_name}", edit_user_registration_path
               | 
               = link_to "Sign Out", destroy_user_session_path, method: :delete
-          %ul.vertical.menu{:"data-accordion-menu" => true}
-            %li
-              = link_to "SCOREBOARD", "#"
-              %ul.menu.vertical.nested
-                - @menu_scores.each do |score|
-                  %li= link_to "#{score.full_name}: #{score.battles_won.count}", "#"
-            %li
-              = link_to "RECENT BATTLES", battles_path
-              %ul.menu.vertical.nested
-                - @menu_battles.each do |battle|
-                  %li= link_to "#{battle.topic.upcase}", battle_path(battle)
-            %li
-              = link_to "MOST COMMENTED", "#"
-              %ul.menu.vertical.nested
-                - @menu_commented_battles.each do |commented_battle|
-                  %li= link_to "#{commented_battle.topic.upcase}: #{commented_battle.comments.count}", battle_path(commented_battle)
+          - if user_signed_in?
+            %ul.vertical.menu{:"data-accordion-menu" => true}
+              %li
+                = link_to "SCOREBOARD", "#"
+                %ul.menu.vertical.nested
+                  - @menu_scores.each do |score|
+                    %li= link_to "#{score.full_name}: #{score.battles_won.count}", "#"
+              %li
+                = link_to "RECENT BATTLES", battles_path
+                %ul.menu.vertical.nested
+                  - @menu_battles.each do |battle|
+                    %li= link_to "#{battle.topic.upcase}", battle_path(battle)
+              %li
+                = link_to "MOST COMMENTED", "#"
+                %ul.menu.vertical.nested
+                  - @menu_commented_battles.each do |commented_battle|
+                    %li= link_to "#{commented_battle.topic.upcase}: #{commented_battle.comments.count}", battle_path(commented_battle)
         .off-canvas-content{:"data-off-canvas-content" => true}
           %button.button{type: 'button', :"data-toggle" => "off-canvas-left-menu"}= fa_icon 'bars'
           .row
