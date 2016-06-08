@@ -1,21 +1,22 @@
 %p#notice= notice
 
-.battle-header.callout{class: "#{@battle.won? ? "warning" : "success"}"}
-  .row
-    .small-2.columns
-      %strong Created by:
-      = image_tag @battle.created_by.avatar_url
-      = @battle.created_by.full_name
-    .columns{class: "#{@battle.won? ? "small-8" : "small-10"}"}
-      %h1= "Topic: #{@battle.topic}"
-      %h2= text_with_images @battle.description
-    - if @battle.won?
-      .columns.small-2
-        %strong WINNER:
-        = image_tag @battle.winning_comment.image_url
+.row
+  .battle-header.large-12.columns{class: "#{@battle.won? ? "open-thread" : "won-thread"}"}
+    .row
+      .small-2.columns
+        %strong Created by:
+        = image_tag(@battle.created_by.avatar_url, class: "avatar")
+        = @battle.created_by.full_name
+      .columns{class: "#{@battle.won? ? "small-8" : "small-10"}"}
+        %h1= "Topic: #{@battle.topic}"
+        %h2= text_with_images @battle.description
+      - if @battle.won?
+        .columns.small-2
+          %strong WINNER:
+          = image_tag @battle.winning_comment.image_url
 
-- @comments.each do |comment|
-  = render partial: "comment", locals:{comment:comment, battle:@battle}
+- @comments.each_with_index do |comment, i|
+  = render partial: "comment", locals:{comment:comment, battle:@battle, depth:0, index:i%2}
 
 - unless @battle.won?
   = form_for(@comment) do |f|

@@ -1,22 +1,22 @@
+.row
+  %div{class:"small-12 large-#{12-depth} large-offset-#{depth} color-#{index} columns comment"}
+    %strong
+      = image_tag(comment.user.avatar_url, class: "avatar")
+      = comment.user.full_name
+    %div= text_with_images comment.body
+    %div= comment.tags.map { |tag| "\##{tag.name}" }.join(", ")
+    - if comment.user_id == current_user.id
+      = link_to "Edit", edit_comment_path(comment)
+    %button.add-tag{ :"data-comment-id" => "#{comment.id}"} Tag
+    - if !battle.won? && battle.created_by_id == current_user.id
+      = form_for(battle) do |f|
+        = f.hidden_field :winning_comment_id, value: comment.id
+        = f.submit "Mark as winner"
+    = form_for(Tag.new, html: {id: "new-tag-#{comment.id}", class: "new-tag"}) do |f|
+      = f.text_field :name
+      = f.hidden_field :comment_id, value: comment.id
+      = f.submit
 
-%div
-  %strong
-    = image_tag(comment.user.avatar_url, class: "avatar")
-    = comment.user.full_name
-  %div= text_with_images comment.body
-  %div= comment.tags.map { |tag| "\##{tag.name}" }.join(", ")
-  - if comment.user_id == current_user.id
-    = link_to "Edit", edit_comment_path(comment)
-  %button.add-tag{ :"data-comment-id" => "#{comment.id}"} Tag
-  - if !battle.won? && battle.created_by_id == current_user.id
-    = form_for(battle) do |f|
-      = f.hidden_field :winning_comment_id, value: comment.id
-      = f.submit "Mark as winner"
-  = form_for(Tag.new, html: {id: "new-tag-#{comment.id}", class: "new-tag"}) do |f|
-    = f.text_field :name
-    = f.hidden_field :comment_id, value: comment.id
-    = f.submit
-%br
-
-- comment.comments.each do |reply|
-  = render partial: "comment", locals:{comment:reply, battle:battle}
+- depth += 1 unless depth >= 5
+- comment.comments.each_with_index do |reply, i|
+  = render partial: "comment", locals:{comment:reply, battle:battle, depth:depth, index:(index+i+1)%2}
