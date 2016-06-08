@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
-	validates :user_id, presence:true, inclusion:{in:User.pluck(:id)}
-	validates :battle_id, presence:true, inclusion:{in:Battle.unwon.pluck(:id)}
+  validates :user_id, presence:true, inclusion:{in:User.pluck(:id)}
+  validates :battle_id, presence:true, inclusion:{in:Battle.unwon.pluck(:id)}
 
   belongs_to :battle
   belongs_to :comment
@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
   has_many :tags
 
   def image
-		regex = /https?:\/\/\S+\.(?:gif|jpg|jpeg|png|gifv)/i
+    regex = /https?:\/\/\S+\.(?:gif|jpg|jpeg|png|gifv)/i
     body.match regex
   end
 end

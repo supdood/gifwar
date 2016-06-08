@@ -21,7 +21,7 @@
             - else
               = image_tag current_user.avatar_url
               = link_to "Edit #{current_user.full_name}", edit_user_registration_path
-              | 
+              |
               = link_to "Sign Out", destroy_user_session_path, method: :delete
           %ul.vertical.menu{:"data-accordion-menu" => true}
             %li
