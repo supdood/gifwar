@@ -15,11 +15,13 @@ class ApplicationController < ActionController::Base
   private
 
   def setup_offcanvas_menu
+    @menu_current_battles   = Battle.unwon.order(:created_at)
     #TODO: Refactor @menu_scores to be more performant. Calling User.all.sort_by is not scalable.
     @menu_scores            = User.all
                                   .sort_by{|a,b| a.battles_won.count <=> b.battles_won.count if [a,b].all?}
                                   .first(5)
-    @menu_battles           = Battle.order(:created_at)
+    @menu_recent_battles    = Battle.won
+                                    .order(created_at: :desc)
                                     .last(5)
     @menu_commented_battles = Battle.joins(:comments)
                                     .group("comments.battle_id")
