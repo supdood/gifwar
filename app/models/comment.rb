@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
-  validates :user_id, presence:true, inclusion:{in:User.pluck(:id)}
-  validates :battle_id, presence:true, inclusion:{in:Battle.unwon.pluck(:id)}
+  validates :user_id, presence:true, inclusion: {in: Proc.new { User.pluck(:id) }}
+  validates :battle_id, presence:true, inclusion: {in: Proc.new { Battle.unwon.pluck(:id) }}
 
   belongs_to :battle
   belongs_to :comment
