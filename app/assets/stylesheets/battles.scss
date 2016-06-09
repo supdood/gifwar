@@ -14,7 +14,7 @@ body {
   background-color: #2F3F73;
 }
 
-h1.battles_header {
+h1.battles-header {
   color:aliceblue;
 } 
 
@@ -32,13 +32,6 @@ h1.battles_header {
   border-radius: 50%;
   width: 5em;
   height: 5em;
-}
-
-
-.ghost-button {
-  &:hover {
-    background: rgba(10, 10, 10, 0.1);
-  }
 }
 
 .comment {
@@ -103,10 +96,31 @@ a.boxy:hover {
   background-color: transparent;
 }
 
+.current-battle-box {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.current-battle {
+  //margin: 0.5em;
+  margin-bottom: 1em;
+  background-color: $secondary;
+  height: 30em;
+  &:hover {
+    background-color: $primary;
+  }
+  img {
+    display: block;
+    height: 16em;
+    margin: auto;
+  }
+}
+
 .panel {
   border-style: solid;
   border-width: 2px;
-  margin-right: 1em;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
   margin-bottom: 1em;
   height: 30em;
   background-color: $secondary;
@@ -120,4 +134,10 @@ a.boxy:hover {
     height: 23em;
     margin: auto;
   }
+}
+
+//foundation override
+
+.boxy.columns:last-child:not(:first-child) {
+    float: left;
 }
