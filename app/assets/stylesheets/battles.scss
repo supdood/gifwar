@@ -2,11 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.new-tag {
+.new-tag,
+.new-reply {
   display: none;
 }
-
-//our additions changes
 
 body {
   background-color: #2F3F73;
@@ -64,6 +63,7 @@ h1.battles_header {
   border-style: solid;
   border-width: 2px;
   margin: 1px;
+  padding: 20px;
 }
 
 .comment img, .comment video {
