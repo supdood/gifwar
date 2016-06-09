@@ -14,7 +14,7 @@
   %body
     .off-canvas-wrapper
       .off-canvas-wrapper-inner{:"data-off-canvas-wrapper" => true}
-        #off-canvas-left-menu.off-canvas.position-left{:"data-off-canvas" => true}
+        #offCanvas.off-canvas.position-left{:"data-off-canvas" => true}
           .text-center
             - if current_user.nil?
               = link_to "Sign In", new_user_session_path
@@ -47,7 +47,10 @@
                   - @menu_scores.each do |score|
                     %li= link_to "#{score.full_name}: #{score.battles_won.count}", "#"
         .off-canvas-content{:"data-off-canvas-content" => true}
-          %button.button{type: 'button', :"data-toggle" => "off-canvas-left-menu"}= fa_icon 'bars'
-          .row
+          %div{:"data-sticky-container" => true}
+            .top-bar{"data-btm-anchor" => "content:bottom", "data-options" => "marginTop:0;", :"data-sticky" => true, "data-top-anchor" => "1"}
+              .top-bar-left.small-12.columns
+                %button.left.menu-icon{"data-toggle" => "offCanvas", :type => "button"}     
+          %article
             .small-12
               = yield
