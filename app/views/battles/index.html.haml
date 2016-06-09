@@ -1,16 +1,17 @@
 %p#notice= notice
 
 .row
-  %h1.battles_header Battles
+  %h1.battles-header Battles
   - if User.current_winner == current_user
     = link_to "New battle", new_battle_path, class: "button"
 
 .row
   - unless @current_battle.nil?
     = link_to @current_battle do
-      .callout.large-12.columns.ghost-button
-        %h1= @current_battle.topic
-        = text_with_images(@current_battle.description)
+      .current-battle-box
+        .large-12.columns.current-battle
+          %h1= @current_battle.topic
+          = text_with_images @current_battle.description, true
 
 -@battles.each_slice(3) do |row|
   - row.each do |battle|
