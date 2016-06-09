@@ -11,7 +11,7 @@ class Comment < ActiveRecord::Base
   has_many :tags
 
   def image
-    regex = /https?:\/\/\S+\.(?:gifv|jpg|jpeg|png|gif)/i
+    regex = /https?:\/\/\S+\.(?:gifv|webm|mp4|jpg|jpeg|png|gif)/i
     body.match(regex).to_s
   end
 end
