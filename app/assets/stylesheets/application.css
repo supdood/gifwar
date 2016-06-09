@@ -17,9 +17,22 @@
  */
 
 html, body,.off-canvas-wrapper,.off-canvas-wrapper-inner{
-    min-height:100vh;
+  min-height:100vh;
 }
 
 html, body,.off-canvas-wrapper,.off-canvas-wrapper-inner, .off-canvas-content{
-    min-height:100vh;
+  min-height:100vh;
+}
+
+article {
+  overflow-y: auto;
+}
+
+article,body,html,.off-canvas-wrapper,.off-canvas-wrapper-inner,.off-canvas,.off-canvas-content,.row{
+  height: 100%;
+  width: 100%;
+}
+
+.top-bar{
+  width: 100%;
 }
