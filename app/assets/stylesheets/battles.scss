@@ -27,7 +27,7 @@ h1.battles_header {
 }
 
 .avatar {
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 5px;
   border-radius: 50%;
   width: 5em;
@@ -46,6 +46,10 @@ h1.battles_header {
   border-width: 2px;
   margin: 1px;
   padding: 20px;
+
+  .winner-form {
+    display: inline;
+  }
 }
 
 .comment img, .comment video {
@@ -65,7 +69,6 @@ button.button, button.button:focus  {
   background-color: lightgray;
   color: black;
   outline-color: azure;
-  position: fixed;
 }
 
 button.button:hover {
@@ -76,8 +79,24 @@ button.button:hover {
   display: none;
 }
 
-.hidden_button {
-  display: none;
+.user-section {
+  text-align: center;
+}
+
+.buttons.row {
+  padding-top: 10px;
+
+  .button {
+    margin-bottom: 0;
+  }
+}
+
+.comment-text {
+  font-size: 1.5em;
+
+  img {
+    margin: 5px 0;
+  }
 }
 
 a.boxy:hover {
