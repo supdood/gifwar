@@ -40,17 +40,25 @@
                 = link_to "MOST COMMENTED", "#"
                 %ul.menu.vertical.nested
                   - @menu_commented_battles.each do |commented_battle|
-                    %li= link_to "#{commented_battle.topic.upcase}: #{commented_battle.comments.count}", battle_path(commented_battle)
+                    %li
+                      %span
+                        .badge= commented_battle.comments.count
+                        = link_to "#{commented_battle.topic.upcase}", battle_path(commented_battle)
               %li
                 = link_to "SCOREBOARD", "#"
                 %ul.menu.vertical.nested
                   - @menu_scores.each do |score|
-                    %li= link_to "#{score.full_name}: #{score.battles_won.count}", "#"
+                    %li
+                      %span
+                        .badge= score.battles_won.count
+                        = link_to "#{score.full_name}", "#"
+
         .off-canvas-content{:"data-off-canvas-content" => true}
           %div{:"data-sticky-container" => true}
             .top-bar{"data-btm-anchor" => "content:bottom", "data-options" => "marginTop:0;", :"data-sticky" => true, "data-top-anchor" => "1"}
               .top-bar-left.small-12.columns
-                %button.left.menu-icon{"data-toggle" => "offCanvas", :type => "button"}     
+                %button.left{"data-toggle" => "offCanvas", :type => "button"}= fa_icon "bars"
+          = yield :bottom_bar
           %article
             .small-12
               = yield

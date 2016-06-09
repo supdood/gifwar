@@ -26,6 +26,8 @@ html, body,.off-canvas-wrapper,.off-canvas-wrapper-inner, .off-canvas-content{
 
 article {
   overflow-y: auto;
+  padding-top: 3em;
+  padding-bottom: 6em;
 }
 
 article,body,html,.off-canvas-wrapper,.off-canvas-wrapper-inner,.off-canvas,.off-canvas-content,.row{
@@ -35,4 +37,11 @@ article,body,html,.off-canvas-wrapper,.off-canvas-wrapper-inner,.off-canvas,.off
 
 .top-bar{
   width: 100%;
+}
+
+.new-comment-field{
+  background-color: lightgrey;
+  width:100%;
+  position: fixed;
+  bottom: 0;
 }
