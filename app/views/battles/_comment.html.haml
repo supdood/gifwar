@@ -10,7 +10,9 @@
         = form_for(Comment.find(comment.id), html: {id: "edit-comment-#{comment.id}", class: "edit-comment-form"}) do |f|
           = f.text_field :body
           = f.hidden_field :id, value: comment.id
-        %div= comment.tags.map { |tag| "\##{tag.name}" }.join(", ")
+        %div
+          - comment.tags.each do |tag|
+            .secondary.label= tag.name
     .row.buttons
       .large-offset-2.large-10.columns
         - unless battle.won?
