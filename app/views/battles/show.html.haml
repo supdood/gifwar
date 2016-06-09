@@ -13,7 +13,7 @@
       - if @battle.won?
         .columns.small-2
           %strong WINNER:
-          = image_tag @battle.winning_comment.image_url
+          = text_with_images @battle.winning_comment.image, true
 
 - @comments.each_with_index do |comment, i|
   = render partial: "comment", locals:{comment:comment, battle:@battle, depth:0, index:i%2}
