@@ -12,8 +12,9 @@
         %h1= @current_battle.topic
         = text_with_images(@current_battle.description)
 
-.row
-  - @battles.each do |battle|
-    = link_to battle, class:"fuck-foundation" do
-      %h4= battle.topic
-      = text_with_images battle.winning_comment.image, true
+-@battles.each_slice(3) do |row|
+  - row.each do |battle|
+    = link_to battle, class:"boxy medium-6 large-4 columns" do
+      .panel
+        %h4= battle.topic
+        = text_with_images battle.winning_comment.image, true

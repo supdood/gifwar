@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$primary: #BFCCC9;
+$secondary: #EBFBF8;
+
 .new-tag,
 .new-reply {
   display: none;
@@ -16,11 +19,11 @@ h1.battles_header {
 } 
 
 .color-0 {
-  background-color: #BFCCC9;
+  background-color: $primary;
 }
 
 .color-1 {
-  background-color: #EBFBF8;
+  background-color: $secondary;
 }
 
 .avatar {
@@ -36,27 +39,6 @@ h1.battles_header {
   &:hover {
     background: rgba(10, 10, 10, 0.1);
   }
-}
-
-.fuck-foundation {
-  @extend .ghost-button;
-
-  box-sizing: border-box;
-  float: left;
-  display: block;
-  width: 32%;
-  padding: 15px;
-  border: 1px solid rgba(10, 10, 10, 0.25);
-  margin: 0 2% 2% 0;
-  height: 300px;
-
-  &:hover {
-    color: inherit
-  }
-}
-
-.fuck-foundation:nth-child(3n+3) {
-  margin-right: 0;
 }
 
 .comment {
@@ -96,4 +78,27 @@ button.button:hover {
 
 .hidden_button {
   display: none;
+}
+
+a.boxy:hover {
+  background-color: transparent;
+}
+
+.panel {
+  border-style: solid;
+  border-width: 2px;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  height: 30em;
+  background-color: $secondary;
+  
+  &:hover {
+    background-color: $primary;
+  }
+  
+  img {
+    display: block;
+    height: 23em;
+    margin: auto;
+  }
 }
