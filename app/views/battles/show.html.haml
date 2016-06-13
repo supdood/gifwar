@@ -17,9 +17,9 @@
 - @comments.each_with_index do |comment, i|
   = render partial: "comment", locals:{comment:comment, battle:@battle, depth:0, index:i%2}
 
-- unless @battle.won?
-  .row
-    .comment{class: "color-#{@comments.length % 2}"}
+- content_for :bottom_bar do
+  - unless @battle.won?
+    .title-bar.new-comment-field
       = form_for(@comment) do |f|
         - if @comment.errors.any?
           #error_explanation
@@ -27,5 +27,5 @@
             %ul
               - @comment.errors.full_messages.each do |message|
                 %li= message
-        .field= f.hidden_field :battle_id, value: @battle.id
-        .field= f.text_field :body, placeholder: "Write your comment here"
+        = f.hidden_field :battle_id, value: @battle.id
+        = f.text_field :body, placeholder: "Write your comment or paste your image URL here"
